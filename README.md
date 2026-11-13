@@ -5,11 +5,13 @@ Personal lab notes from rooted [TryHackMe](https://tryhackme.com) rooms.
 ## Structure
 
 ```text
-rooms/<sala>/NOTES.md   # walkthrough (terminal-style, filtered)
-docs/                   # project guide + skills
-security-lab.md         # command arsenal / cheat sheet
-tools/                  # helpers (wordlists grandes / shells NÃO versionados)
-vpn/                    # configs .ovpn (NÃO versionados)
+AGENTS.md                      # agent entrypoint (AI)
+.cursor/rules/                 # Cursor project rules
+.cursor/skills/thm-room-notes/ # room-notes workflow skill
+rooms/<sala>/NOTES.md          # walkthroughs (source of truth)
+security-lab.md                # command cheat sheet
+docs/bug-bounty/               # misc research notes
+tools/ · vpn/                  # local only — not committed
 ```
 
 ## Rooms
@@ -24,8 +26,8 @@ vpn/                    # configs .ovpn (NÃO versionados)
 | [mustacchio](rooms/mustacchio/NOTES.md) | DONE |
 | [root-me](rooms/root-me/NOTES.md) | DONE |
 
-## Rules
+## Conventions
 
 - Authorized labs only.
-- No VPN configs, private keys, or huge wordlists in git.
-- Notes keep commands + **filtered** output — see `docs/SKILLS/thm-room-notes.md`.
+- VPN, keys, and large wordlists stay out of git (`.gitignore`).
+- Agent instructions live in `AGENTS.md` + `.cursor/` — not duplicated under `docs/`.

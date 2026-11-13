@@ -1,30 +1,14 @@
 ---
-description: Como documentar CTFs/TryHackMe — comandos, saídas filtradas e passo a passo em rooms/
+description: Documentar labs TryHackMe em rooms/*/NOTES.md com saída filtrada
 alwaysApply: true
 ---
 
-# CTF / TryHackMe — documentação obrigatória
+# CTF room notes
 
-Sempre que rodarmos labs, rooms, recon, enum ou exploração neste repo:
+When working on labs, rooms, recon, enum, or exploitation in this repo:
 
-## Onde salvar
-
-1. Pasta: `rooms/<sala-em-minusculo>/` (ex.: `rooms/ignite/`)
-2. Narrativa: `rooms/<sala>/NOTES.md` — passo a passo até o objetivo
-3. Artefatos brutos (opcional): `nmap.txt`, `gobuster.txt`, `hydra.txt`, etc. na mesma pasta
-4. Template completo: `docs/SKILLS/thm-room-notes.md`
-
-## Como escrever o NOTES.md
-
-- Estilo terminal: bloco `console` com `$ comando` + **saída já filtrada**
-- Depois do bloco: 1–2 linhas do que isso muda (achado → próximo passo)
-- Só infos úteis: portas/serviços, paths, creds de lab, erros relevantes, flags
-- Cortar: banners, progresso, timeouts, linhas repetidas, ASCII art de tools
-- Mascarar/redigir: VPN `.ovpn`, tokens reais, senhas pessoais (labs THM ok no NOTES)
-- Autorização first: só alvos do lab / escopo autorizado
-
-## Fluxo do agente
-
-1. Criar/atualizar `rooms/<sala>/NOTES.md` a cada passo relevante
-2. Rodar comando → filtrar saída → colar no NOTES no formato terminal
-3. Não deixar o walkthrough só na conversa — persistir no arquivo da room
+1. Write to `rooms/<sala-em-minusculo>/NOTES.md` (create the folder if needed).
+2. Follow `.cursor/skills/thm-room-notes/SKILL.md` for template, filters, and checklist.
+3. Style: `console` block with `$ comando` + filtered output, then `→ Achado` / `→ Próximo`.
+4. Keep only decision-changing output; redact personal secrets / VPN material.
+5. Do not leave the walkthrough only in chat — persist it in the room NOTES.

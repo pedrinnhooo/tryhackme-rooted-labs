@@ -1,0 +1,33 @@
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Secrets & VPN
+vpn/
+**/*.ovpn
+**/*id_rsa*
+**/*.pem
+**/*.key
+.env
+*.hash
+
+# Huge / sensitive wordlists
+tools/seclist/rockyou.txt
+**/rockyou.txt*
+
+# Shells / exploit artifacts (keep out of public git)
+tools/shell/
+**/php-reverse-shell*
+**/PwnKit*
+**/bloco_*
+**/*.b64
+
+# Local dumps / binaries
+*.exe
+*.bin
+overpassMacOS
+**/__pycache__/
+*.pyc
+linux/enum4linux-ng/

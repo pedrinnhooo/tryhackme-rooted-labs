@@ -30,4 +30,4 @@ tools/ · vpn/                  # local only — not committed
 
 - Authorized labs only.
 - VPN, keys, and large wordlists stay out of git (`.gitignore`).
-- Agent instructions live in `AGENTS.md` + `.cursor/` — not duplicated under `docs/`.
+- Agent instructions live in `AGENTS.md` + `.cursor/`

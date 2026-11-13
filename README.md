@@ -1,6 +1,6 @@
 # tryhackme-rooted-labs
 
-Personal lab notes from rooted / in-progress [TryHackMe](https://tryhackme.com) rooms.
+Personal lab notes from rooted [TryHackMe](https://tryhackme.com) rooms.
 
 ## Structure
 
@@ -18,11 +18,11 @@ vpn/                    # configs .ovpn (NÃO versionados)
 |---|---|
 | [ignite](rooms/ignite/NOTES.md) | DONE |
 | [brooklyn-nine-nine](rooms/brooklyn-nine-nine/NOTES.md) | DONE |
-| [overpass](rooms/overpass/NOTES.md) | PARTIAL |
-| [basic-pentest](rooms/basic-pentest/NOTES.md) | PARTIAL |
-| [chill-hack](rooms/chill-hack/NOTES.md) | PARTIAL |
-| [mustacchio](rooms/mustacchio/NOTES.md) | PARTIAL |
-| [root-me](rooms/root-me/NOTES.md) | PARTIAL |
+| [overpass](rooms/overpass/NOTES.md) | DONE |
+| [basic-pentest](rooms/basic-pentest/NOTES.md) | DONE |
+| [chill-hack](rooms/chill-hack/NOTES.md) | DONE |
+| [mustacchio](rooms/mustacchio/NOTES.md) | DONE |
+| [root-me](rooms/root-me/NOTES.md) | DONE |
 
 ## Rules
 

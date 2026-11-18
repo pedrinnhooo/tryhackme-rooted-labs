@@ -47,7 +47,7 @@ PORT   STATE SERVICE
 ```console
 $ gobuster dir \
   -u http://10.65.178.31:8080 \
-  -w /Applications/tech/dev/cyber/tryhackme/tools/seclist/common.txt
+  -w /tools/seclist/common.txt
 
 Gobuster v3.8.2
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -55,7 +55,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 [+] Url:                     http://10.65.178.31:8080
 [+] Method:                  GET
 [+] Threads:                 10
-[+] Wordlist:                /Applications/tech/dev/cyber/tryhackme/tools/seclist/common.txt
+[+] Wordlist:                /tools/seclist/common.txt
 [+] Negative Status codes:   404
 [+] User Agent:              gobuster/3.8.2
 [+] Timeout:                 10s
@@ -97,7 +97,7 @@ bytes-lotus/
 
 # Byte Lotus — Guest Experience Platform
 
-/Applications/tech/dev/cyber/tryhackme/rooms/room-404/byte-lotus/README.md : 
+/rooms/room-404/byte-lotus/README.md : 
 
 Internal staging repository for the guest app and concierge personalization
 service. Do not deploy this folder to production.

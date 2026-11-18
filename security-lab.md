@@ -167,7 +167,7 @@ file arquivo_desconhecido
 
 ```bash
 # Exemplo: remover um aplicativo específico
-sudo rm -rf "/Applications/Otter.app"
+sudo rm -rf "/APPs/<appName>.app"
 ```
 
 Não execute comandos de remoção com caminhos não verificados ou variáveis vazias.
@@ -415,24 +415,24 @@ Ferramenta para descobrir diretórios e arquivos por meio de wordlists.
 # Enumera diretórios e arquivos de um site autorizado
 gobuster dir \
   -u http://10.65.191.241 \
-  -w /Applications/development/github/tryhackme/tools/seclist/common.txt
+  -w tools/seclist/common.txt
 
 # Enumera com extensões comuns de arquivos web
 gobuster dir \
   -u http://10.65.156.192 \
-  -w /Applications/development/github/tryhackme/tools/seclist/common.txt \
+  -w tools/seclist/common.txt \
   -x php,html,txt
 
 # Salva os resultados em arquivo
 gobuster dir \
   -u http://10.65.156.192 \
-  -w /Applications/development/github/tryhackme/tools/seclist/common.txt \
+  -w tools/seclist/common.txt \
   -o gobuster.txt
 
 # Define códigos HTTP relevantes para exibição
 gobuster dir \
   -u http://10.65.156.192 \
-  -w /Applications/development/github/tryhackme/tools/seclist/common.txt \
+  -w tools/seclist/common.txt \
   -s 200,204,301,302,307,401,403
 ```
 
@@ -620,7 +620,7 @@ route -n get 10.65.170.96
 
 ```bash
 # Testa uma lista de senhas para um usuário de laboratório via SSH
-hydra -l jan -P /Applications/development/github/tryhackme/tools/seclist/rockyou.txt \
+hydra -l jan -P tools/seclist/rockyou.txt \
   -t 4 -vV 10.65.156.192 ssh
 ```
 
@@ -639,7 +639,7 @@ hydra -l usuario_teste -P senhas_teste.txt \
 ```bash
 # Salva os resultados em um arquivo
 hydra -l jan \
-  -P /Applications/development/github/tryhackme/tools/seclist/rockyou.txt \
+  -P tools/seclist/rockyou.txt \
   -t 4 -vV -o hydra.txt 10.65.156.192 ssh
 ```
 
@@ -793,7 +793,7 @@ scp relatorio.txt usuario@10.10.10.10:/home/usuario/
 
 # Exemplo de lab: baixar artefato
 scp jan@10.65.156.192:/home/kay/pass.bak \
-  /Applications/development/github/tryhackme/rooms/basic-pentest/
+  rooms/basic-pentest/
 ```
 
 [↑ índice](#indice)

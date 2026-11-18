@@ -29,8 +29,6 @@
 
 ---
 
-
-
 # 📑 ÍNDICE
 
 ```text
@@ -87,8 +85,6 @@
 [↑ voltar ao índice](#indice)
 
 ---
-
-
 
 # 01 — TERMINAL & ARQUIVOS
 
@@ -180,8 +176,6 @@ Não execute comandos de remoção com caminhos não verificados ou variáveis v
 
 ---
 
-
-
 # 02 — PROCESSOS & PORTAS
 
 ```text
@@ -246,8 +240,6 @@ Se o processo não encerrar, confirme que o PID continua sendo o mesmo antes de 
 
 ---
 
-
-
 # 03 — VPN & CONECTIVIDADE
 
 ```text
@@ -304,8 +296,6 @@ netstat -an
 
 ---
 
-
-
 # 04 — PERMISSÕES & HASHES
 
 ```text
@@ -355,8 +345,6 @@ A comparação só é útil se o hash de referência vier de uma fonte confiáve
 [↑ índice](#indice)
 
 ---
-
-
 
 # 05 — RECONHECIMENTO COM NMAP
 
@@ -412,8 +400,6 @@ FLUXO RECOMENDADO
 
 ---
 
-
-
 # 06 — ENUMERAÇÃO WEB
 
 ```text
@@ -468,8 +454,6 @@ gobuster dir \
 
 ---
 
-
-
 # 07 — DNS & REDE
 
 ```text
@@ -513,8 +497,6 @@ whois example.com
 [↑ índice](#indice)
 
 ---
-
-
 
 # 08 — HTTP & APIs
 
@@ -564,8 +546,6 @@ curl -X POST \
 [↑ índice](#indice)
 
 ---
-
-
 
 # 09 — NETCAT & CONEXÕES
 
@@ -627,8 +607,6 @@ route -n get 10.65.170.96
 
 ---
 
-
-
 # 10 — HYDRA & AUDITORIA DE SENHAS
 
 ```text
@@ -683,8 +661,6 @@ hydra -l jan \
 
 ---
 
-
-
 # 11 — ACESSO REMOTO & AUTENTICAÇÃO
 
 ```text
@@ -695,8 +671,6 @@ hydra -l jan \
 > Quando você encontra credenciais durante um CTF, o próximo passo é identificar **qual serviço aceita essas credenciais**.
 
 ---
-
-
 
 ## ▸ SSH — Secure Shell
 
@@ -746,8 +720,6 @@ Não ignore avisos de chave SSH sem verificar a identidade do servidor.
 
 ---
 
-
-
 ## ▸ FTP — File Transfer Protocol
 
 FTP é usado para transferir arquivos entre um cliente e um servidor.
@@ -792,8 +764,6 @@ FTP tradicional transmite credenciais **sem criptografia**. Em redes não confi�
 
 ---
 
-
-
 ## ▸ SFTP / SCP — Transferência segura
 
 SFTP utiliza o SSH para transferir arquivos de forma protegida.
@@ -830,8 +800,6 @@ scp jan@10.65.156.192:/home/kay/pass.bak \
 
 ---
 
-
-
 # 12 — IDENTIFICAR SERVIÇOS ANTES DE ENTRAR
 
 ```text
@@ -862,8 +830,6 @@ Use esses comandos somente contra alvos próprios ou incluídos no escopo autori
 [↑ índice](#indice)
 
 ---
-
-
 
 # 13 — ESTEGANOGRAFIA
 
@@ -919,8 +885,6 @@ Esses métodos podem revelar metadados ou conteúdo textual, mas não garantem a
 
 ---
 
-
-
 # 14 — ANÁLISE DE ARQUIVOS
 
 ```text
@@ -965,8 +929,6 @@ xxd -l 128 documento.bin
 
 ---
 
-
-
 # 15 — LOGS & INVESTIGAÇÃO
 
 ```text
@@ -1010,8 +972,6 @@ Os caminhos e formatos dos logs variam conforme o SO e a aplicação. Alguns arq
 [↑ índice](#indice)
 
 ---
-
-
 
 # 16 — FLUXO DE TRABALHO NO CTF
 
@@ -1075,8 +1035,6 @@ find / -perm -4000 -type f 2>/dev/null
 
 ---
 
-
-
 # 17 — CHECKLIST DE PENTEST
 
 ```text
@@ -1119,8 +1077,6 @@ find / -perm -4000 -type f 2>/dev/null
 [↑ índice](#indice)
 
 ---
-
-
 
 # 18 — GOOGLE BUG HUNTERS (ANDROID / MOBILE)
 
@@ -1174,8 +1130,6 @@ O programa prioriza vulnerabilidades com impacto real:
 
 ---
 
-
-
 # 19 — ORGANIZAÇÃO DO LABORATÓRIO
 
 ```text
@@ -1221,8 +1175,6 @@ security-lab/
 [↑ índice](#indice)
 
 ---
-
-
 
 # 20 — REGRAS DE SEGURANÇA
 
